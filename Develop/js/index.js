@@ -12,14 +12,14 @@ if (window.location.pathname === '/notes') {
   noteList = document.querySelectorAll('.list-container .list-group');
 }
 
-// Show an element
-const show = (elem) => {
-  elem.style.display = 'inline';
+// Show ele
+const show = (ele) => {
+  ele.style.display = 'inline';
 };
 
-// Hide an element
-const hide = (elem) => {
-  elem.style.display = 'none';
+// Hide ele
+const hide = (ele) => {
+  ele.style.display = 'none';
 };
 
 // activeNote is used to keep track of the note in the textarea
@@ -39,7 +39,7 @@ const saveNote = (note) =>
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(note)
+    body: JSON.stringify(note),
   });
 
 const deleteNote = (id) =>
@@ -77,23 +77,6 @@ const handleNoteSave = () => {
   });
 };
 
-// Delete the clicked note
-const handleNoteDelete = (e) => {
-  // Prevents the click listener for the list from being called when the button inside of it is clicked
-  e.stopPropagation();
-
-  const note = e.target;
-  const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
-
-  if (activeNote.id === noteId) {
-    activeNote = {};
-  }
-
-  deleteNote(noteId).then(() => {
-    getAndRenderNotes();
-    renderActiveNote();
-  });
-};
 
 // Sets the activeNote and displays it
 const handleNoteView = (e) => {
@@ -155,7 +138,7 @@ const renderNoteList = async (notes) => {
   };
 
   if (jsonNotes.length === 0) {
-    noteListItems.push(createLi('No saved Notes', false));
+    noteListItems.push(createLi('No stored notes', false));
   }
 
   jsonNotes.forEach((note) => {
