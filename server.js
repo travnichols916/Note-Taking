@@ -5,9 +5,9 @@ const uuid = require('uuid');
 const fs = require('fs');
 
 //Import api routes 
-const apiRoutes = require('./routes/apiRoutes');
+const apiRoutes = require('./routes/api');
 // import html routes
-const htmlRoutes = require('./routes/htmlRoutes');
+const htmlRoutes = require('./routes/html');
 
 const app = express();
 //variable port(heroku sets to 80 automatically)
@@ -18,17 +18,17 @@ app.use(express.urlencoded({extended: true}));
 // this one will parse json data
 app.use(express.json());
 app.use(express.static('public'));
-
+//sending /api routes first
 app.use('/api', apiRoutes);
-
+// /api/notes
 // and our html routes
 app.use('/', htmlRoutes);
 
 //undefined routes should be last
-app.get('*', function(req, res) {
-    console.log ('get request sent for index.html')
-    res.sendFile(path.join(__dirname, '../../public/index.html'))
-});
+// app.get('*', function(req, res) {
+//     console.log ('get request sent for index.html')
+//     res.sendFile(path.join(__dirname, '../public/index.html'))
+// });
 
 
 // listen to server at dynamic port

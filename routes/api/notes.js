@@ -6,10 +6,10 @@ const router = require('express').Router();
 // use UUID to make an ID universally unique
 const { v4: uuidv4 } = require('uuid');
 
-
+// "/"
 
 // get request for notes
-router.get("/notes", function(req, res) {
+router.get("/", function(req, res) {
     console.log(`GET response for /notes endpoint`);
     fs.readFile("./db/db.json", function (err, data) {
         if (err) {
@@ -23,11 +23,13 @@ router.get("/notes", function(req, res) {
 
 // "C" part of CRUD otherwise known as the create/post method
 // remember to use "key" : "value" syntax in Insomnia for testing
-router.post ('/notes', function(req, res) {
+router.post ('/', function(req, res) {
 
     console.log('POST request sent for /notes endpoint');
     let newNote = req.body;
     newNote.id = uuidv4();
+
+
 
     // we read notes file and take data, push new note to data
     fs.readFile("./db/db.json", "utf8", function(err, data) {
