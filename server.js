@@ -24,12 +24,6 @@ app.use('/api', apiRoutes);
 // and our html routes
 app.use('/', htmlRoutes);
 
-//undefined routes should be last
-// app.get('*', function(req, res) {
-//     console.log ('get request sent for index.html')
-//     res.sendFile(path.join(__dirname, '../public/index.html'))
-// });
-
 
 // listen to server at dynamic port
 app.listen(PORT, () => {
